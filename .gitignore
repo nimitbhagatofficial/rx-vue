@@ -13,7 +13,6 @@ dist
 dist-ssr
 coverage
 *.local
-vue-setup-guide.txt
 
 /cypress/videos/
 /cypress/screenshots/

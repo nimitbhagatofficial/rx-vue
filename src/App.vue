@@ -1,85 +1,44 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+    <nav class="row">
+      <button @click="changeTab(1)" class="col-4 text-center btn btn-active" :class="active1 ? 'active' : ''">Step
+        1</button>
+      <button @click="changeTab(2)" class="col-4 text-center btn btn-active" :class="active2 ? 'active' : ''">Step
+        2</button>
+      <button @click="changeTab(3)" class="col-4 text-center btn btn-active"
+        :class="active3 ? 'active' : (active2 ? '' : 'disabled')">Step
+        3</button>
+    </nav>
   </header>
-
-  <RouterView />
+  <TheWelcome :active1="active1" :active2="active2" :active3="active3" />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+<script>
+import TheWelcome from './components/TheWelcome.vue'
+export default {
+  props: ["active1", "active2", "active3"],
+  components: {
+    'TheWelcome': TheWelcome,
+  },
+  data() {
+    return {
+      active1: true,
+      active2: false,
+      active3: false,
+    }
+  },
+  methods: {
+    changeTab(active) {
+      this.active1 = active == 1 ? true : false;
+      this.active2 = active == 2 ? true : false;
+      this.active3 = active == 3 ? true : false;
+    }
   }
+}
+</script>
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+<style>
+.active {
+  background: #e7f2f8;
 }
 </style>
