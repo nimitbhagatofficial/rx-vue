@@ -54,6 +54,7 @@ export default {
         },
         settingsChanged() {
             this.selectedConfig = this.configurations.configs[this.config];
+            this.configChange();
         }
     },
 }

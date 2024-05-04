@@ -11,7 +11,7 @@
         @config-changed="configChanged" />
 
       <StepThree ref="sThree" :selectedModal="selectedModal" :selectedColor="selectedColor"
-        :selectedConfig="selectedConfig" v-show="active3 == true" />
+        :selectedConfig="selectedConfig" :configurations="configurations" v-show="active3 == true" />
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
       selectedModal: false,
       selectedColor: false,
       selectedConfig: false,
+      configurations: false,
     }
   },
   computed: {
@@ -40,8 +41,9 @@ export default {
       this.$refs.sTwo.getConfigurations();
       this.image = "https://interstate21.com/tesla-app/images/" + modal.code + '/' + color.code + '.jpg';
     },
-    configChanged(selectedConfig) {
-      
+    configChanged(configurations, selectedConfig) {
+      console.log(configurations);
+      this.configurations = configurations;
       this.selectedConfig = selectedConfig;
     }
   }
