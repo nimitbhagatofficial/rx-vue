@@ -7,6 +7,5 @@ import { setupWorker } from 'msw/browser'
 import { handlers } from './mocks/handlers'
 export const worker = setupWorker(...handlers)
 await worker.start()
-(async () => {
-  createApp(App).mount('#app')
-})();
+
+createApp(App).mount('#app')
